@@ -1,3 +1,4 @@
+import React from 'react';
 import { Fonts } from '@/components/Fonts';
 import {
   Collapse,
@@ -20,18 +21,11 @@ import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import Image from 'next/image';
 import Head from 'next/head';
-import * as emailjs from 'emailjs-com';
 
 import { AiFillCheckCircle } from 'react-icons/ai';
-import { MdCheck } from 'react-icons/md';
 import { FaWhatsappSquare } from 'react-icons/fa';
 
 import { Squash as Hamburger } from 'hamburger-react';
-import React, { useRef, useState } from 'react';
-import NewUnformInput from '@/components/Fonts/Inputs/NewUnformInput';
-import NewUnformInputMask from '@/components/Fonts/Inputs/NewUnformInputMask';
-import { FormHandles, SubmitHandler } from '@unform/core';
-import { Form } from '@unform/web';
 
 export default function Home() {
   // HEADER
@@ -79,40 +73,6 @@ export default function Home() {
 
   // CONTATO
 
-  interface FormData {
-    telefone: string;
-    name: string;
-    email: string;
-  }
-
-  const formRef = useRef<FormHandles>(null);
-  const [done, setDone] = useState(false);
-
-  const handleSubmit: SubmitHandler<FormData> = (data) => {
-    const dataFormated = {
-      ...data,
-      telefone_formated: data.telefone,
-      telefone: data.telefone.replace(/\D/g, ''),
-    };
-    emailjs
-      .send(
-        process.env.NEXT_PUBLIC_SERVICE_ID || '',
-        process.env.NEXT_PUBLIC_TEMPLATE_ID || '',
-        dataFormated,
-        process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
-      )
-      .then(
-        () => {
-          setDone(true);
-          // nameRef.current.value = null
-          // emailRef.current.value = null
-          // messageRef.current.value = null
-        },
-        () => {
-          // console.log(error.text)
-        },
-      );
-  };
   // END CONTATO
 
   return (
@@ -161,12 +121,20 @@ export default function Home() {
                     ))}
                   </Stack>
                   <LinkBox mt={2}>
-                    <Flex align="center">
-                      <Icon as={FaWhatsappSquare} h={6} w={6} />
-                      <NextLink passHref href="https://wa.me/553195695242">
-                        <LinkOverlay> (31) 9 9569-5242</LinkOverlay>
-                      </NextLink>
-                    </Flex>
+                    <NextLink passHref href="https://wa.me/553195695242">
+                      <LinkOverlay isExternal>
+                        <Flex align="center" textAlign="right">
+                          <Icon
+                            as={FaWhatsappSquare}
+                            h={[10, 10, 6, 6]}
+                            w={[10, 10, 6, 6]}
+                          />{' '}
+                          <Text d={['none', 'none', 'flex', 'flex']}>
+                            (31) 9 9569-5242
+                          </Text>
+                        </Flex>
+                      </LinkOverlay>
+                    </NextLink>
                   </LinkBox>
                 </Flex>
                 <IconButton
@@ -246,46 +214,38 @@ export default function Home() {
                   />
                 </Flex>
               </Flex>
-              <Form ref={formRef} onSubmit={handleSubmit}>
-                <Flex
-                  align="center"
-                  justify="center"
-                  borderRadius={['0', '45px']}
-                  boxShadow="lg"
-                  borderWidth={1}
-                  p={4}
-                  m={4}
-                  flexDir={['column', 'column', 'row']}
-                >
-                  <NewUnformInput isRequired name="name" placeholder="Nome" />
-                  <NewUnformInput
-                    isRequired
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                  />
-                  <NewUnformInputMask
-                    isRequired
-                    name="telefone"
-                    type="tel"
-                    mask="(99) 99999-9999"
-                    placeholder="Celular"
-                  />
-                  <Button
-                    type="submit"
-                    isDisabled={done}
-                    w="75%"
-                    bgColor="brand.500"
-                    alignSelf="center"
-                    color="brand.700"
-                    m={2}
-                    borderRadius="full"
-                    _hover={{ color: 'brand.200', bgColor: 'brand.400' }}
+              <Flex
+                align="center"
+                justify="center"
+                borderRadius="45px"
+                boxShadow="lg"
+                borderWidth={1}
+                p={4}
+                m={4}
+              >
+                <LinkBox>
+                  <NextLink
+                    href="https://wa.me/553195695242"
+                    as="https://wa.me/553195695242"
+                    passHref
                   >
-                    {done ? <Icon as={MdCheck} h={6} w={6} /> : 'Contato'}
-                  </Button>
-                </Flex>
-              </Form>
+                    <LinkOverlay isExternal>
+                      <Button
+                        size="lg"
+                        w="full"
+                        bgColor="brand.500"
+                        alignSelf="center"
+                        color="brand.700"
+                        borderRadius="full"
+                        _hover={{ color: 'brand.500', bgColor: 'brand.700' }}
+                        leftIcon={<Icon as={FaWhatsappSquare} w={10} h={10} />}
+                      >
+                        Contato agora!
+                      </Button>
+                    </LinkOverlay>
+                  </NextLink>
+                </LinkBox>
+              </Flex>
             </Flex>
           </Flex>
         </section>
@@ -359,20 +319,6 @@ export default function Home() {
                   ))}
                 </Stack>
               </Flex>
-            </Flex>
-          </Flex>
-        </section>
-        <section id="contato">
-          <Flex flexGrow={1} align="center" bgColor="#FFF" justify="center">
-            <Flex maxW="1280px" flexGrow={1} p={4}>
-              Contato
-            </Flex>
-          </Flex>
-        </section>
-        <section id="footer">
-          <Flex flexGrow={1} align="center" justify="center">
-            <Flex maxW="1280px" flexGrow={1} p={4}>
-              Footer
             </Flex>
           </Flex>
         </section>
