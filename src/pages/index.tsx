@@ -13,14 +13,18 @@ import {
   Wrap,
   WrapItem,
   Button,
+  LinkBox,
+  LinkOverlay,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
 import Image from 'next/image';
+import Head from 'next/head';
 import * as emailjs from 'emailjs-com';
 
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { MdCheck } from 'react-icons/md';
+import { FaWhatsappSquare } from 'react-icons/fa';
 
 import { Squash as Hamburger } from 'hamburger-react';
 import React, { useRef, useState } from 'react';
@@ -113,6 +117,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <title>Casa Fácil | Seu sonho mais próximo</title>
+      </Head>
       <Fonts />
       <Flex flexDir="column">
         <section id="header">
@@ -131,27 +138,37 @@ export default function Home() {
                   height="60px"
                   objectFit="contain"
                 />
-                <Stack
-                  d={['none', 'none', 'flex', 'flex']}
-                  spacing={4}
-                  isInline
-                  align="center"
-                  justify="center"
-                >
-                  {menuLinks.map((link) => (
-                    <NextLink key={link.href} passHref href={link.href}>
-                      <Link
-                        fontWeight={
-                          router.asPath === link.href ? 'bold' : 'normal'
-                        }
-                        _hover={{ fontWeight: 'semibold' }}
-                        _focus={{}}
-                      >
-                        {link.text}
-                      </Link>
-                    </NextLink>
-                  ))}
-                </Stack>
+                <Flex flexDir="column" align="flex-end">
+                  <Stack
+                    d={['none', 'none', 'flex', 'flex']}
+                    spacing={4}
+                    isInline
+                    align="center"
+                    justify="center"
+                  >
+                    {menuLinks.map((link) => (
+                      <NextLink key={link.href} passHref href={link.href}>
+                        <Link
+                          fontWeight={
+                            router.asPath === link.href ? 'bold' : 'normal'
+                          }
+                          _hover={{ fontWeight: 'semibold' }}
+                          _focus={{}}
+                        >
+                          {link.text}
+                        </Link>
+                      </NextLink>
+                    ))}
+                  </Stack>
+                  <LinkBox mt={2}>
+                    <Flex align="center">
+                      <Icon as={FaWhatsappSquare} h={6} w={6} />
+                      <NextLink passHref href="https://wa.me/553195695242">
+                        <LinkOverlay> (31) 9 9569-5242</LinkOverlay>
+                      </NextLink>
+                    </Flex>
+                  </LinkBox>
+                </Flex>
                 <IconButton
                   d={['flex', 'flex', 'none', 'none']}
                   aria-label="mobileMenu"
