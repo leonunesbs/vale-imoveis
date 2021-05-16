@@ -121,7 +121,7 @@ export default function Home() {
                     ))}
                   </Stack>
                   <LinkBox mt={2}>
-                    <NextLink passHref href="https://wa.me/5531999993265">
+                    <NextLink passHref href="https://wa.me/553195695242">
                       <LinkOverlay isExternal>
                         <Flex align="center" textAlign="right">
                           <Icon
@@ -130,7 +130,7 @@ export default function Home() {
                             w={[10, 10, 6, 6]}
                           />{' '}
                           <Text d={['none', 'none', 'flex', 'flex']}>
-                            (31) 9 9999-3265
+                            (31) 9 9569-5242
                           </Text>
                         </Flex>
                       </LinkOverlay>
