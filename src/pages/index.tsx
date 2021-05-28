@@ -129,7 +129,7 @@ export default function Home() {
             bgColor="brand.100"
           >
             <Flex maxW="1280px" flexGrow={1} flexDir="column">
-              <Flex justify="space-between" align="center" flexGrow={1} p={4}>
+              <Flex justify="space-between" align="center" flexGrow={1} p={6}>
                 <Image
                   src="/logo.png"
                   width="80px"
@@ -230,30 +230,26 @@ export default function Home() {
                     fontWeight="black"
                     p={4}
                     textAlign="center"
-                    color="brand.400"
+                    bgClip="text"
+                    bgGradient="linear(to-br, brand.400, brand.200)"
                   >
                     <Text>
-                      O{' '}
-                      <Text as="span" color="brand.200">
-                        SONHO
-                      </Text>{' '}
-                      DA
+                      <Text as="span">CONFORTO</Text>,
                     </Text>
-                    <Text>
-                      <Text>SUA FAMÍLIA</Text>
-                    </Text>
-                    <Text>
-                      AGORA É{' '}
-                      <Text as="span" color="brand.200">
-                        REALIDADE
+                    <Text
+                      bgGradient="linear(to-bl, brand.200, brand.300)"
+                      bgClip="text"
+                    >
+                      <Text>COMO EM SEUS</Text>
+                      <Text>
+                        <Text as="span">SONHOS</Text>!
                       </Text>
-                      !
                     </Text>
                   </Heading>
                 </Flex>
                 <Flex w={['100%', '100%', '50%', '50%']}>
                   <Image
-                    src="/family.jpeg"
+                    src="/image1.jpg"
                     width="1024px"
                     height="689px"
                     objectFit="contain"
