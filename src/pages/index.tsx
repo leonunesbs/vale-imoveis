@@ -9,13 +9,10 @@ import {
   Link,
   Stack,
   useDisclosure,
-  Icon,
   Center,
   Wrap,
   WrapItem,
   Button,
-  LinkBox,
-  LinkOverlay,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import NextLink from 'next/link';
@@ -24,14 +21,14 @@ import Head from 'next/head';
 
 import * as emailjs from 'emailjs-com';
 
-import { AiFillCheckCircle } from 'react-icons/ai';
-import { FaWhatsappSquare } from 'react-icons/fa';
-
 import { Squash as Hamburger } from 'hamburger-react';
 import NewUnformInput from '@/components/Fonts/Inputs/NewUnformInput';
 import NewUnformInputMask from '@/components/Fonts/Inputs/NewUnformInputMask';
 import { Form } from '@unform/web';
 import { FormHandles, SubmitHandler } from '@unform/core';
+
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
 
 interface FormData {
   telefone: string;
@@ -64,23 +61,10 @@ export default function Home() {
 
   // END HEADER
   // SOBRE
-  const sobreItems = [
-    'Condomínio fechado',
-    'Ruas pavimentadas',
-    'Rede de água',
-    'Rede elétrica',
-    'Cercamento',
-    'Portão eletrônico',
-  ];
   // END SOBRE
 
   // CARDS
-  const cardsItems = [
-    'SEM CONSULTA AO SPC OU SERASA',
-    'ATÉ 150x',
-    'A PARTIR DE R$799,00',
-    'FINANCIAMENTO PRÓPRIO',
-  ];
+  const cardsItems = ['SEGURANÇA', 'ÓTIMA LOCALIZAÇÃO'];
   // END CARDS
 
   // CONTATO
@@ -249,7 +233,7 @@ export default function Home() {
                 </Flex>
                 <Flex w={['100%', '100%', '50%', '50%']}>
                   <Image
-                    src="/image1.jpg"
+                    src="/image0.jpg"
                     width="1024px"
                     height="689px"
                     objectFit="contain"
@@ -310,15 +294,20 @@ export default function Home() {
           </Flex>
         </section>
 
-        {/* <section id="cards">
+        <section id="cards">
           <Flex
             flexGrow={1}
             bgColor="brand.500"
             align="center"
             justify="center"
           >
-            <Flex maxW="1280px" flexGrow={1} p={4}>
-              <Wrap justify="center" flexGrow={1} spacing={[2, 4]}>
+            <Flex maxW="1280px" justify="center" flexGrow={1} p={4}>
+              <Wrap
+                justify="space-between"
+                maxW="680px"
+                flexGrow={1}
+                spacing={[2, 4]}
+              >
                 {cardsItems.map((item) => (
                   <WrapItem key={item}>
                     <Center
@@ -326,7 +315,7 @@ export default function Home() {
                       bgColor="brand.100"
                       borderTopLeftRadius="3xl"
                       borderBottomRightRadius="3xl"
-                      color="brand.500"
+                      color="brand.400"
                       transition="width 0.5s, height 0.5s"
                       h={['90px', '120px']}
                       w={['185px', '280px']}
@@ -339,56 +328,110 @@ export default function Home() {
               </Wrap>
             </Flex>
           </Flex>
-        </section> */}
-        {/* <section id="sobre">
+        </section>
+        <section id="sobre">
           <Flex flexGrow={1} align="center" justify="center">
             <Flex maxW="1280px" flexGrow={1} p={4} flexDir="column">
               <Flex flexGrow={1} flexWrap="wrap">
-                <Flex w={['100%', '100%', '50%', '50%']} justify="center">
-                  <Image
-                    src="/sobre.jpeg"
-                    width="683px"
-                    height="593px"
-                    className="sobreImage"
-                    objectFit="contain"
-                  />
-                  <style jsx global>{`
-                    .sobreImage {
-                      border-top-left-radius: 50px;
-                    }
-                  `}</style>
+                <Flex w="100%" justify="center">
+                  <Carousel
+                    autoPlay
+                    emulateTouch
+                    infiniteLoop
+                    renderIndicator={() => false}
+                  >
+                    <Image
+                      src="/image1.jpg"
+                      width="683px"
+                      height="593px"
+                      objectFit="contain"
+                    />
+                    <Image
+                      src="/image2.jpg"
+                      width="683px"
+                      height="593px"
+                      objectFit="contain"
+                    />
+                    <Image
+                      src="/image3.jpg"
+                      width="683px"
+                      height="593px"
+                      objectFit="contain"
+                    />
+                    <Image
+                      src="/image4.jpg"
+                      width="683px"
+                      height="593px"
+                      objectFit="contain"
+                    />
+                    <Image
+                      src="/image5.jpg"
+                      width="683px"
+                      height="593px"
+                      objectFit="contain"
+                    />
+                    <Image
+                      src="/image6.jpg"
+                      width="683px"
+                      height="593px"
+                      objectFit="contain"
+                    />
+                  </Carousel>
                 </Flex>
-                <Stack
-                  w={['100%', '100%', '50%', '50%']}
-                  justify="center"
-                  flexDir="column"
-                  my={6}
-                  pl={[4, 14]}
-                >
-                  {sobreItems.map((item) => (
-                    <Text
-                      key={item}
-                      as="h3"
-                      fontSize="lg"
-                      fontWeight="semibold"
-                      _hover={{ color: 'brand.500' }}
-                    >
-                      <Icon
-                        as={AiFillCheckCircle}
-                        color="brand.500"
-                        _hover={{ color: 'brand.700' }}
-                        w={10}
-                        h={10}
-                      />{' '}
-                      {item}
-                    </Text>
-                  ))}
-                </Stack>
               </Flex>
             </Flex>
           </Flex>
-        </section> */}
+        </section>
       </Flex>
+      <Form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        style={{
+          display: 'flex',
+          flexGrow: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Flex
+          w={['100%', 'initial']}
+          align="center"
+          justify="center"
+          borderRadius={['0', '45px']}
+          boxShadow="lg"
+          borderWidth={1}
+          p={4}
+          m={4}
+          flexDir={['column', 'row']}
+        >
+          <NewUnformInput isRequired name="name" placeholder="Nome" />
+          <NewUnformInput
+            isRequired
+            name="email"
+            type="email"
+            placeholder="Email"
+          />
+          <NewUnformInputMask
+            isRequired
+            name="telefone"
+            type="tel"
+            mask="(99) 99999-9999"
+            placeholder="Celular"
+          />
+          <Button
+            type="submit"
+            minW="140px"
+            bgColor="brand.200"
+            alignSelf="center"
+            color="brand.100"
+            m={2}
+            borderRadius="full"
+            _hover={{ color: 'brand.200', bgColor: 'brand.400' }}
+          >
+            Contato
+          </Button>
+        </Flex>
+      </Form>
     </>
   );
 }
