@@ -339,6 +339,7 @@ export default function Home() {
                     emulateTouch
                     infiniteLoop
                     renderIndicator={() => false}
+                    showThumbs={false}
                   >
                     <Image
                       src="/image1.jpg"
