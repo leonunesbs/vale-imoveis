@@ -101,6 +101,13 @@ export default function Home() {
     <>
       <Head>
         <title>Vale Imóveis | Realizando o sonho da sua família!</title>
+        <meta
+          name="description"
+          content="More com toda infraestrutura, segurança e lazer que você e sua família merecem."
+        />
+        <meta property="og:image" content="/image1.jpg" />
+        <meta name="twitter:image" content="/image1.jpg" />
+        <meta name="image" content="/image1.jpg" />
       </Head>
       <Fonts />
       <Flex flexDir="column">
