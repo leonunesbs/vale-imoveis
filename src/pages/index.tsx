@@ -29,6 +29,7 @@ import { FormHandles, SubmitHandler } from '@unform/core';
 
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import ReactPlayer from 'react-player';
 
 interface FormData {
   telefone: string;
@@ -64,7 +65,12 @@ export default function Home() {
   // END SOBRE
 
   // CARDS
-  const cardsItems = ['SEGURANÇA', 'ÓTIMA LOCALIZAÇÃO'];
+  const cardsItems1 = [
+    'ENTRADA FACILITADA',
+    'ÓTIMA LOCALIZAÇÃO',
+    'GARAGEM COBERTA',
+    'PRONTO PARA MORAR',
+  ];
   // END CARDS
 
   // CONTATO
@@ -101,13 +107,32 @@ export default function Home() {
     <>
       <Head>
         <title>Vale Imóveis | Realizando o sonho da sua família!</title>
+
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:title"
+          content="Vale Imóveis | Realizando o sonho da sua família!"
+        />
+        <meta
+          name="twitter:title"
+          content="Vale Imóveis | Realizando o sonho da sua família!"
+        />
         <meta
           name="description"
+          content="More com toda infraestrutura, segurança e lazer que você e sua família merecem."
+        />
+        <meta
+          property="og:description"
+          content="More com toda infraestrutura, segurança e lazer que você e sua família merecem."
+        />
+        <meta
+          name="twitter:description"
           content="More com toda infraestrutura, segurança e lazer que você e sua família merecem."
         />
         <meta property="og:image" content="/image1.jpg" />
         <meta name="twitter:image" content="/image1.jpg" />
         <meta name="image" content="/image1.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <Fonts />
       <Flex flexDir="column">
@@ -300,7 +325,6 @@ export default function Home() {
             </Flex>
           </Flex>
         </section>
-
         <section id="cards">
           <Flex
             flexGrow={1}
@@ -308,14 +332,26 @@ export default function Home() {
             align="center"
             justify="center"
           >
-            <Flex maxW="1280px" justify="center" flexGrow={1} p={4}>
-              <Wrap
-                justify="space-between"
-                maxW="680px"
-                flexGrow={1}
-                spacing={[2, 4]}
+            <Flex
+              maxW="1280px"
+              justify="center"
+              align="center"
+              flexGrow={1}
+              p={4}
+              flexDir="column"
+            >
+              <Heading
+                size="2xl"
+                bgColor="brand.200"
+                bgClip="text"
+                fontWeight="black"
+                mb={5}
+                textAlign="center"
               >
-                {cardsItems.map((item) => (
+                APENAS <br /> R$129.990,00!
+              </Heading>
+              <Wrap justify="center" flexGrow={1} spacing={[2, 4]}>
+                {cardsItems1.map((item) => (
                   <WrapItem key={item}>
                     <Center
                       boxShadow="base"
@@ -336,6 +372,17 @@ export default function Home() {
             </Flex>
           </Flex>
         </section>
+        ]
+        <Flex flexGrow={1} align="center" justify="center">
+          <ReactPlayer
+            url="https://youtu.be/5rjfA5R7zyg"
+            playing
+            loop
+            muted
+            width="100%"
+            height="1280px"
+          />
+        </Flex>
         <section id="sobre">
           <Flex flexGrow={1} align="center" justify="center">
             <Flex maxW="1280px" flexGrow={1} p={4} flexDir="column">
