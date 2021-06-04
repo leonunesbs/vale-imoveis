@@ -372,15 +372,21 @@ export default function Home() {
             </Flex>
           </Flex>
         </section>
-        ]
-        <Flex flexGrow={1} align="center" justify="center">
+        <Flex
+          flexGrow={1}
+          align="center"
+          justify="center"
+          position="relative"
+          height={['240px', '320px', '540px', '620px', '780px', '1080px']}
+        >
           <ReactPlayer
             url="https://youtu.be/5rjfA5R7zyg"
             playing
             loop
             muted
             width="100%"
-            height="1280px"
+            height="100%"
+            style={{ position: 'absolute', top: 0, left: 0 }}
           />
         </Flex>
         <section id="sobre">
