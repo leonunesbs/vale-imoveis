@@ -89,16 +89,9 @@ export default function Home() {
         dataFormated,
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
       )
-      .then(
-        () => {
-          // nameRef.current.value = null
-          // emailRef.current.value = null
-          // messageRef.current.value = null
-        },
-        () => {
-          // console.log(error.text)
-        },
-      );
+      .then(() => {
+        formRef.current?.reset();
+      });
   };
 
   // END CONTATO
